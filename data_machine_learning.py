@@ -22,7 +22,7 @@ print("\nLoading the datasets, getting ready for machine learning...")
 train = pd.read_csv("datasets/train_processed.csv")
 test = pd.read_csv("datasets/test_processed.csv")
 y_train = np.genfromtxt("datasets/y_train.csv")
-test_ID = pd.read_csv("datasets/test_ID.csv")
+test_ID = np.genfromtxt("datasets/test_ID.csv")
 
 print(y_train)
 print(test_ID)
@@ -222,7 +222,10 @@ ensemble = stacked_pred*0.70 + xgb_pred*0.10 + lgb_pred*0.10 + GBoost_pred*0.10
 ###########################################################################
 ### Submission 
 ###########################################################################
+test_ID = test_ID.astype(np.int) 
 submission = pd.DataFrame()
-submission['Id'] = test_ID
-submission['SalePrice'] = ensemble
-submission.to_csv('\submission\submission.csv',index=False)
+submission["Id"] = test_ID
+submission["SalePrice"] = ensemble
+path = 'submission/submission.csv'
+submission.to_csv(path,index=False)
+print("Submission file is written to ", path, ", Good job!")

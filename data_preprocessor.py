@@ -25,8 +25,8 @@ test = pd.read_csv('datasets/test.csv')
 
 train_ID = train['Id']
 test_ID = test['Id']
-test_ID.to_csv("datasets/test_ID.csv")
-
+test_ID = test_ID.values
+np.savetxt("datasets/test_ID.csv", test_ID)
 
 train.drop("Id", axis = 1, inplace = True)
 test.drop("Id", axis = 1, inplace = True) 
@@ -252,7 +252,7 @@ def write_to_csv(dataset, path_name):
 write_to_csv(train_processed, "datasets/train_processed.csv")
 write_to_csv(test_processed, "datasets/test_processed.csv")
 
-np.savetxt("datasets/y_train.csv", y_train, delimiter ='')
+np.savetxt("datasets/y_train.csv", y_train)
 
 #Let user know that the data preprocessing is completed
 print("Data Preprocessing is completed successful, datasets are ready for machine learning:)")
