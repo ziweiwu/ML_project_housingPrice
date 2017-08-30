@@ -1,0 +1,5 @@
+name: ML_python
+channels:
+- defaults
+prefix: /Users/ziweiwu/anaconda3/envs/ML_python
+
